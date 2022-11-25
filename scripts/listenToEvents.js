@@ -1,11 +1,13 @@
 const ethers = require("ethers");
-const usdtABI = require("./usdt.json");
+const usdtABI = require("../usdt.json");
 require("dotenv").config();
 
+const { CONTRACT_ADDRESS, ALCHEMY_WEBSOCKET } = process.env;
+
 async function main() {
-  const usdtAddress = "0xdAC17F958D2ee523a2206206994597C13D831ec7";
+  const usdtAddress = CONTRACT_ADDRESS;
   const provider = new ethers.providers.WebSocketProvider(
-    `wss://eth-mainnet.alchemyapi.io/v2/${process.env.ALCHEMY_WEBSOCKET}`
+    `wss://eth-mainnet.alchemyapi.io/v2/${ALCHEMY_WEBSOCKET}`
   );
 
   const contract = new ethers.Contract(usdtAddress, usdtABI, provider);
